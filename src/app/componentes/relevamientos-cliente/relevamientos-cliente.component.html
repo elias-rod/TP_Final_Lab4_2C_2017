@@ -1,0 +1,61 @@
+<app-spinner *ngIf="spinner"></app-spinner>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default transparent">
+          <div class="panel-heading text-center">
+            <h1>RELEVAMIENTOS</h1><img class="avatar" [src]="RutasService.rutaImagenesSitio + 'relevamientos.png'">
+          </div>
+          <div class="panel-body">
+            <div [formGroup]="filtroForm">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>
+                      <input type="text" formControlName="mysteryNombre" class="form-control" placeholder="Filtro" (keyup)="filtrar('mysteryNombre')">
+                    </th>
+                    <th>
+                      <input type="text" formControlName="localNombre" class="form-control" placeholder="Filtro" (keyup)="filtrar('localNombre')">
+                    </th>
+                    <th>
+                      <input type="text" formControlName="puntajePromedio" class="form-control" placeholder="Filtro" (keyup)="filtrar('puntajePromedio')">
+                    </th>
+                    <th>
+                      <img class="pdf" [src]="RutasService.rutaImagenesSitio + 'pdf.png'" (click)="downloadPdf()">
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>Fecha realizado
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('momentoRealizacion')">
+                    </th>
+                    <th>Realizó
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('mysteryNombre')">
+                    </th>
+                    <th>Local
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('localNombre')">
+                    </th>
+                    <th>Puntaje promedio
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('puntajePromedio')">
+                    </th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let relevamiento of relevamientos">
+                    <td>{{ relevamiento?.momentoRealizacion | fecha }}</td>
+                    <td>{{ relevamiento?.mysteryNombre }} {{ relevamiento?.mysteryApellido }}</td>
+                    <td>{{ relevamiento?.localNombre }}</td>
+                    <td>{{ relevamiento?.puntajePromedio }}</td>
+                    <td>
+                      <button type="button" [routerLink]="['/relevamientoVer', relevamiento?.id]" class="btn btn-info">Ver</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row vertical-center">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default transparent">
+        <div class="panel-body">
+          <app-spinner *ngIf="spinner"></app-spinner>
+          <div *ngIf="mostrarGraficos">
+            <h1>¿Recomienda en general?</h1>
+            <div style="display: block">
+              <canvas baseChart
+                      [data]="pieChartData"
+                      [labels]="pieChartLabels"
+                      [chartType]="pieChartType"></canvas>
+            </div>
+
+            <h1>¿Recomienda al mystery shopper?</h1>
+            <div style="display: block">
+              <canvas baseChart
+                      [data]="pieChartData2"
+                      [labels]="pieChartLabels"
+                      [chartType]="pieChartType"></canvas>
+            </div>
+
+            <h1>¿Concuerda con el promedio?</h1>
+            <div style="display: block">
+              <canvas baseChart
+                      [data]="pieChartData3"
+                      [labels]="pieChartLabels"
+                      [chartType]="pieChartType"></canvas>
+            </div>
+            <div style="display: block">
+              <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>	
+</div>
+

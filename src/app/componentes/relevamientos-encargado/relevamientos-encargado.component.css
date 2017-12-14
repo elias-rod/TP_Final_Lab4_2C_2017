@@ -1,0 +1,11 @@
+.avatar{
+    height: 50px;
+    width: 50px;
+}
+
+.flechaOrdenamiento{
+    cursor:pointer;
+    height: 15px;
+    width: 8px;
+    float: right;
+}

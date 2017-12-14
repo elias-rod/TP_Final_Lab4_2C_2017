@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="list-group transparent">
+          <div *ngIf="this.usuarioActual?.rol == 'encargado'">
+            <a routerLink="/nomina" class="list-group-item">
+              <div class="media">
+                <div class="media-left media-middle">
+                  <img [src]="RutasService.rutaImagenesSitio + 'nomina.png'" class="media-object imagenListado">
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Nómina</h4>
+                  <p>Listado de los usuarios activos</p>
+                </div>
+              </div>
+            </a>
+            <a routerLink="/relevamientosEncargado" class="list-group-item">
+              <div class="media">
+                <div class="media-left media-middle">
+                  <img [src]="RutasService.rutaImagenesSitio + 'relevamientos.png'" class="media-object imagenListado">
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Relevamientos</h4>
+                  <p>Listado de los trabajos realizados y pendientes</p>
+                </div>
+              </div>
+            </a>
+            <a routerLink="/estadisticas" class="list-group-item">
+              <div class="media">
+                <div class="media-left media-middle">
+                  <img [src]="RutasService.rutaImagenesSitio + 'graficos.png'" class="media-object imagenListado">
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Estadisticas</h4>
+                  <p>Informe con gráficos de relevancia</p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div *ngIf="this.usuarioActual?.rol == 'empleado'">
+            <a routerLink="/relevamientosEmpleado" class="list-group-item">
+              <div class="media">
+                <div class="media-left media-middle">
+                  <img [src]="RutasService.rutaImagenesSitio + 'relevamientos.png'" class="media-object imagenListado">
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Relevamientos</h4>
+                  <p>Listado de los trabajos realizados y pendientes</p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div *ngIf="this.usuarioActual?.rol == 'cliente'">
+            <a routerLink="/relevamientosCliente" class="list-group-item">
+              <div class="media">
+                <div class="media-left media-middle">
+                  <img [src]="RutasService.rutaImagenesSitio + 'relevamientos.png'" class="media-object imagenListado">
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Relevamientos</h4>
+                  <p>Listado de los trabajos realizados y pendientes</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

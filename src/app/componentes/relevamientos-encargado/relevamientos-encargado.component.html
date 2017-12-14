@@ -1,0 +1,85 @@
+<!-- Modal confirmar eliminar-->
+<div class="modal fade" id="modalConfirmar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog transparent" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>¿Confirma que desea eliminar el relevamiento?</h1>
+      </div>
+      <div class="modal-body">
+        <p>El relevamiento y todos sus datos adjuntos serán eliminados del servidor y no podrán ser recuperados.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="eliminar()">Borrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin modal confirmar eliminar-->
+
+<app-spinner *ngIf="spinner"></app-spinner>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default transparent">
+          <div class="panel-heading text-center">
+            <h1>RELEVAMIENTOS</h1><img class="avatar" [src]="RutasService.rutaImagenesSitio + 'relevamientos.png'">
+          </div>
+          <div class="panel-body">
+            <div [formGroup]="filtroForm">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th>
+                      <input type="text" formControlName="localNombre" class="form-control" placeholder="Filtro" (keyup)="filtrar('localNombre')">
+                    </th>
+                    <th>
+                      <input type="text" formControlName="mysteryNombre" class="form-control" placeholder="Filtro" (keyup)="filtrar('mysteryNombre')">
+                    </th>
+                    <th>
+                      <input type="text" formControlName="puntajePromedio" class="form-control" placeholder="Filtro" (keyup)="filtrar('puntajePromedio')">
+                    </th>
+                    <th><button type="button" routerLink="/asignacionRelevamiento" class="btn btn-success">Crear</button></th>
+                  </tr>
+                  <tr>
+                    <th>Fecha asignado
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('momentoAsignacion')">
+                    </th>
+                    <th>Fecha realizado
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('momentoRealizacion')">
+                    </th>
+                    <th>Local
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('localNombre')">
+                    </th>
+                    <th>Realizó
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('mysteryNombre')">
+                    </th>
+                    <th>Puntaje promedio
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('puntajePromedio')">
+                    </th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let relevamiento of relevamientos" [ngClass]="{'danger':relevamiento?.momentoRealizacion == 0}">
+                    <td>{{ relevamiento?.momentoAsignacion | fecha }}</td>
+                    <td>{{ relevamiento?.momentoRealizacion | fecha }}</td>
+                    <td>{{ relevamiento?.localNombre }}</td>
+                    <td>{{ relevamiento?.mysteryNombre }} {{ relevamiento?.mysteryApellido }}</td>
+                    <td>{{ relevamiento?.puntajePromedio }}</td>
+                    <td>
+                      <button type="button" [routerLink]="['/relevamientoVer', relevamiento?.id]" class="btn btn-info" *ngIf="relevamiento?.momentoRealizacion != '0' ">Ver</button>
+                      <button type="button" [routerLink]="['/reasignacionRelevamiento', relevamiento?.id]" class="btn btn-warning">Reasignar</button>
+                      <button type="button" (click)="relevamientoActual = relevamiento" data-toggle="modal" data-target="#modalConfirmar" data-backdrop="static" data-keyboard="false" class="btn btn-danger">Eliminar</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<app-spinner *ngIf="spinner"></app-spinner>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default transparent">
+          <div class="panel-heading text-center">
+            <h1>RELEVAMIENTOS</h1><img class="avatar" [src]="RutasService.rutaImagenesSitio + 'relevamientos.png'">
+          </div>
+          <div class="panel-body">
+            <div [formGroup]="filtroForm">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Fecha asignado
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('momentoAsignacion')">
+                    </th>
+                    <th>Fecha realizado
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('momentoRealizacion')">
+                    </th>
+                    <th>Local
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('localNombre')">
+                    </th>
+                    <th>Acciones
+                      <img class="flechaOrdenamiento" [src]="RutasService.rutaImagenesSitio + 'ordenar.png'" (click)="ordenar('localNombre')">
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let relevamiento of relevamientos" [ngClass]="{'danger':relevamiento?.momentoRealizacion == 0}">
+                    <td>{{ relevamiento?.momentoAsignacion | fecha }}</td>
+                    <td>{{ relevamiento?.momentoRealizacion | fecha }}</td>
+                    <td>{{ relevamiento?.localNombre }}</td>
+                    <td>
+                      <button type="button" [routerLink]="['/relevamientoCompletar', relevamiento?.id]" class="btn btn-success" *ngIf="relevamiento?.momentoRealizacion == '0'">Completar</button>
+                      <button type="button" [routerLink]="['/relevamientoVer', relevamiento?.id]" *ngIf="relevamiento?.momentoRealizacion != '0'" class="btn btn-info">Ver</button>
+                      <button type="button" [routerLink]="['/relevamientoModificar', relevamiento?.id]" class="btn btn-warning" *ngIf="relevamiento?.momentoRealizacion != '0'">Modificar</button>
+                      <button type="button" [routerLink]="['/mapa', relevamiento?.localId]" class="btn btn-default">¿Cómo llego?</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

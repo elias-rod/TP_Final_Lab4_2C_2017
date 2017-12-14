@@ -1,0 +1,16 @@
+ <div *ngIf="!valido">
+  <p>La siguiente palabra tiene las letras desordenadas (excepto la primera y la última), decífrala. Solo cuándo el captcha sea correcto se mostrará el mensaje de éxito y se podrá continuar con la operación.</p>
+  <img class="reload" [src]="RutasService.rutaImagenesSitio + 'reload.png'" (click)="generarNuevo()">
+  <p id="palabraMezclada">{{palabraMezclada}}</p>
+  <form [formGroup]="formulario" class="form-group">
+    <div class="input-group">
+      <input type="text" id="respuestaInput" formControlName="respuesta" class="form-control" placeholder="Ingresa aquí tu intento" autofocus>
+      <span class="input-group-btn">
+        <button (click)="verificar()" *ngIf="formulario.valid" class="btn btn-success animated bounceInRight">Verificar</button>
+      </span>
+    </div>
+  </form>
+</div>
+<div *ngIf="valido">
+  Captcha <img class="ok" [src]="RutasService.rutaImagenesSitio + 'validoOk.gif'">
+</div>

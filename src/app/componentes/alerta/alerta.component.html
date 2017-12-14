@@ -1,0 +1,27 @@
+
+
+<div class="modal fade" id="alerta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="media">
+          <div class="media-left">
+            <img [src]="RutasService.rutaImagenesSitio + 'tokenRoto.png'" class="media-object avatar img-thumbnail">
+          </div>
+          <div class="media-body">
+            <h1 class="media-heading">Token vencido</h1>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p>
+          El token de seguridad venció el periodo permitido y para seguir operando es necesario volver a ingresar al sistema.
+        </p>
+      </div>
+      <div class="modal-footer">
+        
+          <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/login">Ok</button>
+        </div>
+    </div>
+  </div>
+</div>
