@@ -7,8 +7,8 @@ class consultaLocal
     public function __construct()
     {
         try {
-            /*MIPC*/ //self::$objetoPDO = new PDO('mysql:host=localhost;dbname=bd;charset=utf8', 'root', '', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-            /*ONLINE*/ self::$objetoPDO = new PDO('mysql:host=localhost;dbname=id2718207_final;charset=utf8', 'id2718207_jose', 'garbarino', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            /*MIPC*/ self::$objetoPDO = new PDO('mysql:host=localhost;dbname=bd;charset=utf8', 'root', '', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            /*ONLINE*/ //self::$objetoPDO = new PDO('mysql:host=localhost;dbname=id2718207_final;charset=utf8', 'id2718207_jose', 'garbarino', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         catch (PDOException $e) {
             print "Error!: " . $e->getMessage();

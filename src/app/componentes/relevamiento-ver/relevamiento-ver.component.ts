@@ -21,6 +21,7 @@ export class RelevamientoVerComponent implements OnInit {
   relevamientoActual;
   Arr = Array; //Array type captured in a variable
   num: number;
+  random: number;
 
   constructor(
   private formBuilder:FormBuilder,
@@ -34,6 +35,7 @@ export class RelevamientoVerComponent implements OnInit {
       'puntajePromedio': [null, Validators.compose([Validators.required])],
       'notas': [null, Validators.compose([Validators.required, Validators.maxLength(1000), Validators.minLength(10)])]
     });
+    this.random = Math.random();
   }
 
   ngOnInit() {

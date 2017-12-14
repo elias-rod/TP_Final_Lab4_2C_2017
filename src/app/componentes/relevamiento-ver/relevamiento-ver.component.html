@@ -17,7 +17,7 @@
             <textarea type="textarea" maxlength="1000" rows="5" formControlName="notas" class="form-control" placeholder="Notas" disabled></textarea>
             <br>
             <div *ngIf="relevamientoActual && relevamientoActual?.cantidadFotos > 0">
-              <img *ngFor="let elemento of Arr(relevamientoActual?.cantidadFotos).fill(1); index as i" [src]="RutasService.rutaFotosRelevamientos + this.relevamientoActual?.id + 'foto' + i + '.png'" class="img-thumbnail">
+              <img *ngFor="let elemento of Arr(relevamientoActual?.cantidadFotos).fill(1); index as i" [src]="RutasService.rutaFotosRelevamientos + this.relevamientoActual?.id + 'foto' + i + '.png?=' + random" class="img-thumbnail">
             </div>
             <br>
             <button class="btn btn-default pull-left" (click)="Location.back()">Volver</button>

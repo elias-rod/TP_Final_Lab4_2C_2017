@@ -55,6 +55,7 @@ export class RelevamientosEncargadoComponent implements OnInit {
       for (var key in this.filtroForm.controls) {
         this.ordenes[key] = true;
       }
+      console.log(this.relevamientos)
     })
     .catch(error => {
       console.log(error);

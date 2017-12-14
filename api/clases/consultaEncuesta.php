@@ -7,8 +7,8 @@ class consultaEncuesta
     public function __construct()
     {
         try {
-            /*MIPC*/ //self::$objetoPDO = new PDO('mysql:host=localhost;dbname=bd;charset=utf8', 'root', '', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-            /*ONLINE*/ self::$objetoPDO = new PDO('mysql:host=localhost;dbname=id2718207_final;charset=utf8', 'id2718207_jose', 'garbarino', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            /*MIPC*/ self::$objetoPDO = new PDO('mysql:host=localhost;dbname=bd;charset=utf8', 'root', '', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            /*ONLINE*/ //self::$objetoPDO = new PDO('mysql:host=localhost;dbname=id2718207_final;charset=utf8', 'id2718207_jose', 'garbarino', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         catch (PDOException $e) {
             print "Error!: " . $e->getMessage();
@@ -31,9 +31,9 @@ class consultaEncuesta
 
             $consulta = self::$objetoPDO->prepare(
                 "INSERT INTO encuestas (relevamientoId, satisfaccionGlobal, satisfaccionMShopper, satisfaccionNotas, satisfaccionFotos,
-                recomendariaServicio, recomendariaMShopper, concuerdaPuntajePromedio, comentarios)
+                recomendariaServicio, recomendariaMShopper, concuerdaPuntajePromedio)
                 VALUES (:relevamientoId, :satisfaccionGlobal, :satisfaccionMShopper, :satisfaccionNotas, :satisfaccionFotos,
-                :recomendariaServicio, :recomendariaMShopper, :concuerdaPuntajePromedio, :comentarios)"
+                :recomendariaServicio, :recomendariaMShopper, :concuerdaPuntajePromedio)"
             );
             
             $consulta->bindValue(':relevamientoId', $parametros['relevamientoId'], PDO::PARAM_INT);
@@ -44,7 +44,6 @@ class consultaEncuesta
             $consulta->bindValue(':recomendariaServicio', $parametros['recomendariaServicio'], PDO::PARAM_STR);
             $consulta->bindValue(':recomendariaMShopper', $parametros['recomendariaMShopper'], PDO::PARAM_STR);
             $consulta->bindValue(':concuerdaPuntajePromedio', $parametros['concuerdaPuntajePromedio'], PDO::PARAM_STR);
-            $consulta->bindValue(':comentarios', $parametros['comentarios'], PDO::PARAM_STR);
             $consulta->execute();
             return $response->withJson(true);
         }
